@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Online Class API
+  description: API documentation for accessing user learning course items.
+  version: 1.0.0
+
+paths:
+  /v1/user/users/current/learning_course_items:
+    get:
+      summary: Retrieve current user's learning course items
+      description: This endpoint retrieves the current user's learning course items.
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: oEDI6MGb
+                        name:
+                          type: string
+                          example: フリーエンジニア養成コース
+                        grade_status:
+                          type: string
+                          enum: [normal, incomplete, complete]
+                          example: normal
+                        enterprise_id:
+                          type: string
+                          example: oQMgoTZ
+                        chat_support_status:
+                          type: string
+                          nullable: true
+                          enum: [enabled, disabled]
+                          example: enabled
+                        is_special_plan:
+                          type: boolean
+                          example: false
+                        is_enterprise_plan:
+                          type: boolean
+                          example: true
+
+servers:
+  - url: http://localhost:3000
+    description: Mock server for local testing
